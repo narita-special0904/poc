@@ -4,16 +4,11 @@ PROXY_URL = "http://localhost:4000"
 PROXY_API_KEY = "dummy"
 
 def chat(prompt: str) -> str:
-    # models = ["azure/narita-gpt-4o", "bedrock/us.anthropic.claude-sonnet-4-6"]
+
     models = [
          "openai/gpt-4o-proxy",
          "openai/claude-sonnet-proxy"
     ]
-    # models = [
-    #      "openai/claude-sonnet-proxy",
-    #      "openai/gpt-4o-proxy",
-    # ]
-
 
     for model in models:
         try:
