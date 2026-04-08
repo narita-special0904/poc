@@ -15,12 +15,14 @@ uv run fallback_litellm.py
 ```
 
 ### 🏁 結果
- - GPT-5.4の場合  
+ - **GPT-5.4の場合** 
+  
 私はOpenAIが開発した言語モデルであり、GPT-4（Generative Pre-trained Transformer 4）という名前のAIアシスタントです。  
 テキストベースの質問や会話に答えるために設計されており、幅広いトピックに関して情報を提供したり、問題を解決する手助けをすることができます。  
 どうぞお気軽に質問してください！  
 
- - Calude-sonnet-4.5へフォールバックの場合  
+ - **Calude-sonnet-4.5へフォールバックの場合**  
+  
 Claudeへフォールバック  
 私はAnthropicが開発した**Claude**というAIアシスタントです。  
 
@@ -28,7 +30,8 @@ Claudeへフォールバック
 
 何かお手伝いできることはありますか？😊  
 
- - Gemini Flash 2.5へフォールバックの場合  
+ - **Gemini Flash 2.5へフォールバックの場合**  
+  
 Claudeへフォールバック  
 Gemini Flashへフォールバック  
 私はGoogleによってトレーニングされた、大規模言語モデルです。  
