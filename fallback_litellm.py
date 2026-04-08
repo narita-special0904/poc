@@ -1,31 +1,48 @@
 import litellm
 
-PROXY_URL = "http://localhost:4000"
-PROXY_API_KEY = "dummy"
+DEBUG_GPT=True
+DEBUG_Claude=False
+
 
 def chat(prompt: str) -> str:
 
-    models = [
-         "openai/gpt-4o-proxy",
-         "openai/claude-sonnet-proxy"
-    ]
+     messages=[
+        {"role": "system", "content": "あなたは優秀なアシスタントです。"},
+        {"role": "user", "content": prompt}
+     ]
+     common = dict(
+         base_url="http://localhost:4000",
+         api_key="dummy",  #dummyでOK
+     )
 
-    for model in models:
-        try:
-            response = litellm.completion(
-                model=model,
-                base_url=PROXY_URL,
-                api_key=PROXY_API_KEY,
-                messages=[
-                    {"role": "system", "content": "あなたは優秀なアシスタントです。"},
-                    {"role": "user", "content": prompt}
-                ]
-            )
-            return response.choices[0]["message"]["content"].strip()
-        except Exception as e:
-            print(f"{model} 失敗: {e} ----> 次のモデルへ")
-
-    raise RuntimeError("全モデル失敗")
+     try:
+          if DEBUG_GPT:
+               raise Exception("DEBUG: GPT意図的失敗")
+          response = litellm.completion(
+               model="openai/gpt-4o-proxy",
+               messages=messages,
+               **common
+          )
+          return response.choices[0].message.content.strip()
+     except Exception as e:
+          print("Claudeへフォールバック")
+          try:
+               if DEBUG_Claude:
+                    raise Exception("DEBUG: Claude意図的失敗")
+               response = litellm.completion(
+                    model="openai/claude-sonnet-proxy",
+                    messages=messages,
+                    **common
+               )
+               return response.choices[0].message.content.strip()
+          except Exception as e:
+               print("Gemini Flashへフォールバック")
+               response = litellm.completion(
+                    model="openai/gemini-flash-proxy",
+                    messages=messages,
+                    **common
+               )
+               return response.choices[0].message.content.strip()
 
 
 if __name__ == "__main__":

@@ -5,11 +5,13 @@ model_list:
       api_base: os.environ/AZURE_OPENAI_ENDPOINT
       api_key: os.environ/AZURE_OPENAI_API_KEY
       api_version: os.environ/AZURE_OPENAI_API_VERSION
-
   - model_name: claude-sonnet-proxy
     litellm_params:
       model: bedrock/us.anthropic.claude-sonnet-4-6
       aws_region_name: os.environ/AWS_DEFAULT_REGION
       aws_access_key_id: os.environ/AWS_ACCESS_KEY_ID
       aws_secret_access_key: os.environ/AWS_SECRET_ACCESS_KEY
-
+  - model_name: gemini-flash-proxy
+    litellm_params:
+      model: gemini/gemini-2.5-flash
+      api_key: os.environ/GEMINI_API_KEY
