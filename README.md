@@ -11,7 +11,7 @@ $ litellm --config config.yaml --port 4000
 
 #### 🗒️ 実行コマンド
 ```bash
-uv run fallback_litellm.py
+$ uv run fallback_litellm.py
 ```
 
 ### 🏁 結果
